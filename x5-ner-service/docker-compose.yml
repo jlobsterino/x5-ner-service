@@ -22,7 +22,7 @@ services:
 
   ml-service:
     build:
-      context: C:/Users/Arseniy/Desktop/ml_project
+      context: ../ml_project
       dockerfile: Dockerfile
     container_name: x5-ml-service
     ports:
