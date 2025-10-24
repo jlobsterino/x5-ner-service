@@ -30,27 +30,34 @@ docker compose up --build
 docker compose down
 ## Структура проекта
 
-.
-├── ml_project/ # ML-сервис на FastAPI + spaCy
-│ ├── Dockerfile
-│ ├── main.py
-│ ├── requirements.txt
-│ └── my_ner_model_new/ # Обученная NER модель
-│
-├── x5-ner-service/ # Backend на Spring Boot
-│ ├── Dockerfile
-│ ├── docker-compose.yml
-│ ├── pom.xml
-│ ├── src/
-│ └── README.md
-│
-└── .gitignore
-undefined
+### ml_project/ 
+ML-сервис на FastAPI + spaCy для распознавания именованных сущностей
+
+- `Dockerfile` — контейнеризация ML-сервиса
+- `main.py` — FastAPI приложение
+- `requirements.txt` — Python зависимости
+- `my_ner_model_new/` — обученная NER модель
+
+### x5-ner-service/
+Backend на Spring Boot для работы с товарами
+
+- `Dockerfile` — контейнеризация бэкенда
+- `docker-compose.yml` — оркестрация всех сервисов
+- `pom.xml` — Maven конфигурация
+- `src/` — исходный код Java приложения
+- `README.md` — документация
+
+### Корневые файлы
+
+- `.gitignore` — игнорируемые файлы (venv, target, и т.д.)
 
 ## Сервисы
-- **backend** (порт 8080) — Spring Boot REST API
-- **ml-service** (порт 8000) — FastAPI сервис для NER-модели
-- **postgres** (порт 5432) — База данных PostgreSQL
+
+| Сервис | Порт | Описание |
+|--------|------|----------|
+| **backend** | 8080 | Spring Boot REST API |
+| **ml-service** | 8000 | FastAPI сервис для NER |
+| **postgres** | 5432 | База данных PostgreSQL |
 
 ## Проблемы?
 
