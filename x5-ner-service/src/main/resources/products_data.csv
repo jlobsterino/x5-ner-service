@@ -1,0 +1,51 @@
+name,brand,category,price,volume,percentage,description,image_url,in_stock
+Молоко пастеризованное,Простоквашино,Молочные продукты,89.90,1л,3.2%,Молоко пастеризованное отборное,https://example.com/prostokwashino-milk.jpg,true
+Молоко ультрапастеризованное,Домик в деревне,Молочные продукты,95.50,0.9л,2.5%,Молоко ультрапастеризованное,https://example.com/domik-milk.jpg,true
+Кефир,Простоквашино,Молочные продукты,75.00,900мл,2.5%,Кефир биопродукт,https://example.com/kefir.jpg,true
+Сметана,Домик в деревне,Молочные продукты,125.00,300г,20%,Сметана густая,https://example.com/smetana.jpg,true
+Творог,Простоквашино,Молочные продукты,145.00,200г,5%,Творог зернистый,https://example.com/tvorog.jpg,true
+Coca-Cola,Coca-Cola,Напитки,125.00,2л,0%,Газированный напиток,https://example.com/cola-2l.jpg,true
+Coca-Cola,Coca-Cola,Напитки,75.00,1л,0%,Газированный напиток,https://example.com/cola-1l.jpg,true
+Coca-Cola Zero,Coca-Cola,Напитки,125.00,2л,0%,Газированный напиток без сахара,https://example.com/cola-zero.jpg,true
+Pepsi,PepsiCo,Напитки,115.00,2л,0%,Газированный напиток,https://example.com/pepsi-2l.jpg,true
+Pepsi,PepsiCo,Напитки,70.00,1л,0%,Газированный напиток,https://example.com/pepsi-1l.jpg,true
+7UP,PepsiCo,Напитки,110.00,2л,0%,Лимонад газированный,https://example.com/7up.jpg,true
+Mirinda,PepsiCo,Напитки,110.00,2л,0%,Апельсиновый напиток,https://example.com/mirinda.jpg,true
+Сок апельсиновый,Добрый,Напитки,135.00,1л,0%,100% сок прямого отжима,https://example.com/dobriy-orange.jpg,true
+Сок яблочный,Добрый,Напитки,130.00,1л,0%,100% сок прямого отжима,https://example.com/dobriy-apple.jpg,true
+Сок томатный,Добрый,Напитки,125.00,1л,0%,Сок с мякотью,https://example.com/dobriy-tomato.jpg,true
+Вода газированная,BonAqua,Напитки,55.00,1.5л,0%,Питьевая вода газированная,https://example.com/bonaqua-gas.jpg,true
+Вода негазированная,BonAqua,Напитки,50.00,1.5л,0%,Питьевая вода,https://example.com/bonaqua.jpg,true
+Чипсы со вкусом сыра,Lay's,Снеки,145.00,150г,0%,Картофельные чипсы,https://example.com/lays-cheese.jpg,true
+Чипсы со вкусом краба,Lay's,Снеки,145.00,150г,0%,Картофельные чипсы,https://example.com/lays-crab.jpg,true
+Чипсы Maxx со вкусом сыра,Lay's,Снеки,165.00,145г,0%,Картофельные чипсы рифленые,https://example.com/lays-maxx.jpg,true
+Сухарики со вкусом бекона,Кириешки,Снеки,45.00,60г,0%,Ржаные сухарики,https://example.com/kirieshki-bacon.jpg,true
+Сухарики со вкусом холодца,Кириешки,Снеки,45.00,60г,0%,Ржаные сухарики,https://example.com/kirieshki-holodec.jpg,true
+Хлеб Бородинский,Коломенское,Хлеб и выпечка,55.00,400г,0%,Хлеб ржаной,https://example.com/borodino.jpg,true
+Хлеб белый нарезной,Коломенское,Хлеб и выпечка,48.00,500г,0%,Хлеб пшеничный,https://example.com/white-bread.jpg,true
+Батон нарезной,Коломенское,Хлеб и выпечка,42.00,400г,0%,Батон пшеничный,https://example.com/baton.jpg,true
+Булочка с маком,Коломенское,Хлеб и выпечка,35.00,100г,0%,Сдобная булочка,https://example.com/bulka-mak.jpg,true
+Круассан шоколадный,7 Days,Хлеб и выпечка,65.00,60г,0%,Круассан с шоколадной начинкой,https://example.com/croissant.jpg,true
+Рис круглозерный,Мистраль,Крупы и макароны,125.00,900г,0%,Рис белый шлифованный,https://example.com/rice.jpg,true
+Гречка ядрица,Мистраль,Крупы и макароны,135.00,900г,0%,Гречневая крупа,https://example.com/grechka.jpg,true
+Макароны спагетти,Barilla,Крупы и макароны,185.00,500г,0%,Макаронные изделия из твердых сортов,https://example.com/barilla-spaghetti.jpg,true
+Макароны перья,Makfa,Крупы и макароны,95.00,450г,0%,Макаронные изделия,https://example.com/makfa-penne.jpg,true
+Овсяные хлопья,Nordic,Крупы и макароны,165.00,500г,0%,Хлопья овсяные экстра,https://example.com/nordic-oats.jpg,true
+Курица охлажденная,Мираторг,Мясо и птица,315.00,1кг,0%,Тушка цыпленка-бройлера,https://example.com/miratorg-chicken.jpg,true
+Фарш говяжий,Мираторг,Мясо и птица,425.00,500г,0%,Фарш охлажденный,https://example.com/beef-mince.jpg,true
+Куриная грудка,Черкизово,Мясо и птица,385.00,800г,0%,Грудка охлажденная,https://example.com/chicken-breast.jpg,true
+Колбаса Докторская,Черкизово,Мясо и птица,425.00,400г,0%,Колбаса вареная,https://example.com/doktorskaya.jpg,true
+Сосиски молочные,Черкизово,Мясо и птица,285.00,450г,0%,Сосиски вареные,https://example.com/sosiski.jpg,true
+Пельмени Сибирские,Цезарь,Мясо и птица,245.00,800г,0%,Пельмени из говядины и свинины,https://example.com/pelmeni.jpg,true
+Йогурт питьевой клубника,Активиа,Молочные продукты,85.00,290г,2.4%,Йогурт обогащенный,https://example.com/activia-strawberry.jpg,true
+Йогурт питьевой персик,Активиа,Молочные продукты,85.00,290г,2.4%,Йогурт обогащенный,https://example.com/activia-peach.jpg,true
+Масло сливочное,Простоквашино,Молочные продукты,245.00,180г,82.5%,Масло традиционное,https://example.com/butter.jpg,true
+Сыр Российский,Валио,Молочные продукты,485.00,400г,50%,Сыр полутвердый,https://example.com/russian-cheese.jpg,true
+Сыр Пармезан,Grana Padano,Молочные продукты,685.00,200г,32%,Сыр твердый выдержанный,https://example.com/parmesan.jpg,true
+Пиво светлое,Балтика 3,Напитки,85.00,0.5л,4.8%,Пиво классическое,https://example.com/baltika3.jpg,true
+Пиво светлое,Балтика 7,Напитки,95.00,0.5л,5.4%,Пиво экспортное,https://example.com/baltika7.jpg,true
+Пиво темное,Балтика 4,Напитки,90.00,0.5л,5.6%,Пиво темное оригинальное,https://example.com/baltika4.jpg,true
+Вино красное полусладкое,Kindzmarauli,Напитки,1250.00,0.75л,11%,Вино грузинское,https://example.com/kindzmarauli.jpg,true
+Шампанское брют,Абрау-Дюрсо,Напитки,785.00,0.75л,12%,Игристое вино,https://example.com/abrau-brut.jpg,true
+Водка,Русский Стандарт,Напитки,685.00,0.5л,40%,Водка класса премиум,https://example.com/russian-standard.jpg,true
+Виски,Jack Daniels,Напитки,2850.00,0.7л,40%,Виски Tennessee Whiskey,https://example.com/jack-daniels.jpg,true

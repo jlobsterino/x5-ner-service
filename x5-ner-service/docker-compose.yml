@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: x5-postgres
+    environment:
+      POSTGRES_DB: x5productdb
+      POSTGRES_USER: x5user
+      POSTGRES_PASSWORD: x5password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U x5user -d x5productdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - x5-network
+
+  ml-service:
+    build:
+      context: C:/Users/Arseniy/Desktop/ml_project
+      dockerfile: Dockerfile
+    container_name: x5-ml-service
+    ports:
+      - "8000:8000"
+    networks:
+      - x5-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: x5-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/x5productdb
+      SPRING_DATASOURCE_USERNAME: x5user
+      SPRING_DATASOURCE_PASSWORD: x5password
+      ML_SERVICE_URL: http://ml-service:8000/api/predict
+      SPRING_PROFILES_ACTIVE: prod
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - ml-service
+    networks:
+      - x5-network
+
+volumes:
+  postgres_data:
+
+networks:
+  x5-network:
+    driver: bridge

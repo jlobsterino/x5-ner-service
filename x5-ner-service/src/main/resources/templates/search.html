@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск товаров X5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #searchInput {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #searchInput:focus {
+            border-color: #667eea;
+        }
+
+        #searchButton {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #searchButton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        #searchButton:active {
+            transform: translateY(0);
+        }
+
+        .search-info {
+            display: none;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .search-info.show {
+            display: block;
+        }
+
+        .entity-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            margin: 5px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .entity-brand {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .entity-type {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .entity-volume {
+            background: #2196F3;
+            color: white;
+        }
+
+        .entity-percent {
+            background: #FF5722;
+            color: white;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-brand {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-category {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .product-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-top: 10px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            color: #666;
+        }
+
+        .no-results h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🛒 Поиск товаров X5</h1>
+        <p>Найдите нужный товар с помощью умного поиска</p>
+    </div>
+
+    <div class="search-container">
+        <div class="search-box">
+            <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Например: молоко простоквашино 1л или кола 2л без сахара"
+                    autocomplete="off"
+            >
+            <button id="searchButton">Найти</button>
+        </div>
+
+        <div id="searchInfo" class="search-info"></div>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p style="margin-top: 10px; color: white;">Ищем товары...</p>
+    </div>
+
+    <div id="resultsContainer"></div>
+</div>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const loading = document.getElementById('loading');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const searchInfo = document.getElementById('searchInfo');
+    const errorMessage = document.getElementById('errorMessage');
+
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    searchButton.addEventListener('click', performSearch);
+
+    window.addEventListener('load', loadAllProducts);
+
+    function loadAllProducts() {
+        loading.classList.add('show');
+
+        fetch('/api/search/products')
+            .then(response => response.json())
+            .then(products => {
+                displayProducts(products, 'Все товары', null, null);
+                loading.classList.remove('show');
+            })
+            .catch(error => {
+                console.error('Ошибка загрузки товаров:', error);
+                loading.classList.remove('show');
+                showError('Не удалось загрузить товары');
+            });
+    }
+
+    function performSearch() {
+        const query = searchInput.value.trim();
+
+        if (!query) {
+            showError('Введите поисковый запрос');
+            return;
+        }
+
+        hideError();
+        searchInfo.classList.remove('show');
+        loading.classList.add('show');
+        resultsContainer.innerHTML = '';
+
+        fetch('/api/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ query: query })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка поиска');
+                }
+                return response.json();
+            })
+            .then(data => {
+                loading.classList.remove('show');
+                displaySearchInfo(data);
+                displayProducts(data.products, `Найдено: ${data.totalCount}`, data.recognizedEntities, data.searchCriteria);
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                loading.classList.remove('show');
+                showError('Произошла ошибка при поиске. Попробуйте еще раз.');
+            });
+    }
+
+    function displaySearchInfo(data) {
+        if (data.recognizedEntities && data.recognizedEntities.length > 0) {
+            let html = '<strong>Распознано:</strong> ';
+
+            data.recognizedEntities.forEach(entity => {
+                const text = data.originalQuery.substring(entity.start_index, entity.end_index);
+                const type = entity.entity.toLowerCase().replace('b-', '').replace('i-', '');
+                html += `<span class="entity-tag entity-${type}">${text} (${type})</span>`;
+            });
+
+            searchInfo.innerHTML = html;
+            searchInfo.classList.add('show');
+        }
+    }
+
+    function displayProducts(products, title, entities, criteria) {
+        if (!products || products.length === 0) {
+            resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <h2>😕 Ничего не найдено</h2>
+                        <p>Попробуйте изменить запрос или поискать что-то другое</p>
+                    </div>
+                `;
+            return;
+        }
+
+        let html = `<h2 style="color: white; margin-bottom: 20px;">${title}</h2>`;
+        html += '<div class="products-grid">';
+
+        products.forEach(product => {
+            const emoji = getProductEmoji(product.categoryName);
+
+            html += `
+                    <div class="product-card">
+                        <div class="product-image">${emoji}</div>
+                        <div class="product-brand">${product.brandName || 'Без бренда'}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-category">${product.categoryName || 'Другое'}</div>
+                        <div class="product-details">
+                            <span>📦 ${product.volume || '-'}</span>
+                            <span>💧 ${product.percentage || '-'}</span>
+                        </div>
+                        <div class="product-price">${product.price} ₽</div>
+                    </div>
+                `;
+        });
+
+        html += '</div>';
+        resultsContainer.innerHTML = html;
+    }
+
+    function getProductEmoji(category) {
+        const emojis = {
+            'молочные продукты': '🥛',
+            'напитки': '🥤',
+            'снеки': '🍿',
+            'хлеб и выпечка': '🍞',
+            'крупы и макароны': '🍝',
+            'мясо и птица': '🍖'
+        };
+        return emojis[category?.toLowerCase()] || '📦';
+    }
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add('show');
+    }
+
+    function hideError() {
+        errorMessage.classList.remove('show');
+    }
+</script>
+</body>
+</html>
