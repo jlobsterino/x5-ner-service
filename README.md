@@ -29,19 +29,25 @@ docker compose up --build
 Нажмите `Ctrl+C` в терминале, затем:
 docker compose down
 ## Структура проекта
+
+.
 ├── ml_project/ # ML-сервис на FastAPI + spaCy
 │ ├── Dockerfile
 │ ├── main.py
 │ ├── requirements.txt
 │ └── my_ner_model_new/ # Обученная NER модель
+│
 ├── x5-ner-service/ # Backend на Spring Boot
 │ ├── Dockerfile
 │ ├── docker-compose.yml
 │ ├── pom.xml
-│ └── src/
-└── README.md
-## Сервисы
+│ ├── src/
+│ └── README.md
+│
+└── .gitignore
+undefined
 
+## Сервисы
 - **backend** (порт 8080) — Spring Boot REST API
 - **ml-service** (порт 8000) — FastAPI сервис для NER-модели
 - **postgres** (порт 5432) — База данных PostgreSQL
