@@ -22,7 +22,7 @@ services:
 
   ml-service:
     build:
-      context: ../ml_project
+      context: ./ml_project
       dockerfile: Dockerfile
     container_name: x5-ml-service
     ports:
@@ -32,7 +32,7 @@ services:
 
   backend:
     build:
-      context: .
+      context: ./x5-ner-service
       dockerfile: Dockerfile
     container_name: x5-backend
     environment:
